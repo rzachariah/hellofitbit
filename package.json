@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/rzachariah/hellofitbit#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "fitbit-client-oauth2": "^2.0.3"
   }
 }

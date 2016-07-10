@@ -10,7 +10,7 @@ dependencies:
 test:
   override:
     - docker run -d -p 80:80 rzachariah/hellofitbit; sleep 10
-    - curl --retry 10 --retry-delay 5 -v http://localhost
+    - curl --retry 10 --retry-delay 5 -v http://localhost/health
 
 deployment:
   hub:
