@@ -1,0 +1,23 @@
+{
+  "name": "hellofitbit",
+  "version": "1.0.0",
+  "description": "Getting started with the Fitbit API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rzachariah/hellofitbit.git"
+  },
+  "author": "Ranjith Zachariah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rzachariah/hellofitbit/issues"
+  },
+  "homepage": "https://github.com/rzachariah/hellofitbit#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
