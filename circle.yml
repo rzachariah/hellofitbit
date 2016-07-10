@@ -9,7 +9,8 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p 80:80 rzachariah/hellofitbit; sleep 10
+    - docker run --name hello -d -p 80:80 rzachariah/hellofitbit; sleep 10
+    - docker logs hello
     - curl --retry 10 --retry-delay 5 -v http://localhost/health
 
 deployment:
