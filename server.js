@@ -8,7 +8,7 @@ var express = require('express')
   , scope = ['activity', 'nutrition', 'profile', 'settings', 'sleep', 'social', 'weight']
   , port = process.env.PORT || 3000;
 
-var tokens;
+var cachedToken;
 
 var options = { /* TIME_SERIES_OPTIONS */ };
 
@@ -34,11 +34,9 @@ app.get('/', function (req, res) {
 app.get('/oauth2/callback', function (req, res, next) {
   console.log('In callback')
   var code = req.query.code;
-  console.log('code', code);
   client.getToken(code, redirect_uri)
     .then(function (token) {
-      console.log('token', token);
-      tokens = token;
+      cachedToken = token;
 
       // then redirect
       res.redirect(302, '/stats');
@@ -47,14 +45,20 @@ app.get('/oauth2/callback', function (req, res, next) {
     .catch(function (err) {
       // something went wrong.
       res.send(500, err);
-
     });
-
 });
 
 // Display some stats
 app.get('/stats', function (req, res) {
-  client.getTimeSeries(tokens, options)
+  var resourcePath = req.query.resourcePath || 'activities/steps'
+  var startDate = req.query.startDate || 'today';
+  var period = req.query.period || '1d';
+  var options = {
+    resourcePath: resourcePath,
+    startDate: startDate,
+    period: period
+  }
+  client.getTimeSeries(cachedToken, options)
     .then(function (data) {
       console.log('data: ', data);
       res.send(data);
