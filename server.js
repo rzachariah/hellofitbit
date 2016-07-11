@@ -1,9 +1,8 @@
-var config = require('./config/app')
-  , express = require('express')
+var express = require('express')
   , app = express()
   , FitbitClient = require('fitbit-client-oauth2')
-  , consumerKey = process.env.CONSUMER_KEY || config.CONSUMER_KEY
-  , consumerSecret = process.env.CONSUMER_SECRET || config.CONSUMER_SECRET
+  , consumerKey = process.env.CONSUMER_KEY || 'test'
+  , consumerSecret = process.env.CONSUMER_SECRET || 'test'
   , client = new FitbitClient(consumerKey, consumerSecret)
   , redirect_uri = 'http://fitness.ranjithzachariah.com/oauth2/callback'
   , scope = ['activity', 'nutrition', 'profile', 'settings', 'sleep', 'social', 'weight']
