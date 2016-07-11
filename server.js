@@ -51,13 +51,14 @@ app.get('/oauth2/callback', function (req, res, next) {
 // Display some stats
 app.get('/stats', function (req, res) {
   var resourcePath = req.query.resourcePath || 'activities/steps'
-  var startDate = req.query.startDate || 'today';
-  var period = req.query.period || '1d';
+  var baseDate = req.query.baseDate || '2016-06-01';
+  var period = req.query.period || '30d';
   var options = {
     resourcePath: resourcePath,
-    startDate: startDate,
+    baseDate: baseDate,
     period: period
   }
+  console.log('options', options);
   client.getTimeSeries(cachedToken, options)
     .then(function (data) {
       console.log('data: ', data);
